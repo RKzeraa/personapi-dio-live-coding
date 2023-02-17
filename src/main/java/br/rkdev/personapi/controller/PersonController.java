@@ -3,6 +3,7 @@ package br.rkdev.personapi.controller;
 import br.rkdev.personapi.dto.MessageResponseDTO;
 import br.rkdev.personapi.dto.request.PersonDTO;
 import br.rkdev.personapi.entity.Person;
+import br.rkdev.personapi.exception.PersonNotFoundException;
 import br.rkdev.personapi.service.PersonService;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,10 @@ public class PersonController {
     @GetMapping
     public List<PersonDTO> listAll() {
         return personService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+        return personService.findById(id);
     }
 }

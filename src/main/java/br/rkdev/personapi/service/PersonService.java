@@ -3,6 +3,7 @@ package br.rkdev.personapi.service;
 import br.rkdev.personapi.dto.MessageResponseDTO;
 import br.rkdev.personapi.dto.request.PersonDTO;
 import br.rkdev.personapi.entity.Person;
+import br.rkdev.personapi.exception.PersonNotFoundException;
 import br.rkdev.personapi.mapper.PersonMapper;
 import br.rkdev.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,5 +43,12 @@ public class PersonService {
         return allPeople.stream()
                 .map(personMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public PersonDTO findById(Long id) throws PersonNotFoundException {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException(id));
+
+        return personMapper.toDTO(person);
     }
 }
