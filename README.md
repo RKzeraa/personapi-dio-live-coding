@@ -12,8 +12,11 @@ In live coding I developed a small system for managing people in a company using
 ✅ Rest<br>
 ✅ GitHub<br>
 ✅ Azure<br>
-✅ Spring Boot<br>
+✅ Spring Boot Framework<br>
+✅ Spring Data<br>
+✅ Sprint Test<br>
 ✅ MapStruct<br>
+✅ Postman<br>
 ✅ Maven 3.6.3+<br>
 </p>
 
